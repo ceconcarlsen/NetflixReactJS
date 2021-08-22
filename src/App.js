@@ -5,12 +5,14 @@ import "./App.css";
 import Tmdb from "./Tmdb";
 
 //Components
-import MovieRow from "./Components/MovieRow/MovieRow";
-import FeaturedMovie from "./Components/FeaturedMovie/FeaturedMovie";
+import MovieRow from "./Components/MovieRow";
+import FeaturedMovie from "./Components/FeaturedMovie";
+import Header from "./Components/Header";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
   const [featureData, setFeatureData] = useState(null);
+  const [blackHeader, setBlackHeader] = useState(false);
 
   useEffect(() => {
     //Quando a aplicação for carregada, executa a função
@@ -33,14 +35,37 @@ function App() {
     loadAll();
   }, []);
 
+  useEffect(() => {
+    //
+
+    const scrollListener = () => {
+      if (window.scrollY > 10) {
+        setBlackHeader(true);
+      } else {
+        setBlackHeader(false);
+      }
+    };
+    window.addEventListener("scroll", scrollListener);
+
+    return () => {
+      window.removeEventListener("scroll", scrollListener);
+    };
+  }, []);
+
   return (
     <div className="page">
+      <Header black={blackHeader} />
       {featureData && <FeaturedMovie item={featureData} />}
       <section className="lists">
         {movieList.map((item, key) => (
           <MovieRow key={key} title={item.title} items={item.items} />
         ))}
       </section>
+
+      <footer>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt=""></img>
+        <h3>API  <a href="https://developers.themoviedb.org/3" target="_blank">Themoviedb.org</a></h3>
+      </footer>
     </div>
   );
 }

@@ -10,3 +10,22 @@ body{
     margin: 0; 
     font-family: 'Roboto', sans-serif;
 }
+
+.lists{
+    margin-top: -150px;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer img{
+    height: 70px;
+}
+
+footer a{
+    text-decoration: none;
+    color: #fff;
+}
