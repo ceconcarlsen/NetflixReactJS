@@ -92,22 +92,23 @@ export default {
   getMovieInfo: async (moveId, type) => {
     let info = {};
 
-    if (moveId) {
-      switch (type) {
-        case "movie":
-          info = await basicFetch(
-            `/movie/${moveId}?language=pt-BR&api_key=${API_KEY}`
-          );
-          break;
-        case "tv":
-          info = await basicFetch(
-            `/tv/${moveId}?language=pt-BR&api_key=${API_KEY}`
-          );
-          break;
-        default:
-          info = "[ERRO]: nor a movie or tv";
-      }
+       if (moveId) {
+          switch (type) {
+          case "movie":
+            info = await basicFetch(
+              `/movie/${moveId}?language=pt-BR&api_key=${API_KEY}`
+            );
+            break;
+          case "tv":
+            info = await basicFetch(
+              `/tv/${moveId}?language=pt-BR&api_key=${API_KEY}`
+            );
+            break;
+          default:
+            info = "[ERRO]: nor a movie or tv";
+        }
     }
+    
 
     return info;
   },

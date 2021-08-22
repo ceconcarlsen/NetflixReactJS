@@ -27,8 +27,8 @@ function App() {
         Math.random() * (originals[0].items.results.length - 1)
       );
       let chosen = originals[0].items.results[randomChosen];
-
       let chosenInfo = await Tmdb.getMovieInfo(chosen.id, "tv");
+
       setFeatureData(chosenInfo); //Info enviada ao componente FeaturedMovie
     };
 
@@ -64,8 +64,15 @@ function App() {
 
       <footer>
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt=""></img>
-        <h3>API  <a href="https://developers.themoviedb.org/3" target="_blank">Themoviedb.org</a></h3>
+        <h3>API  <a href="https://developers.themoviedb.org/3" target="_blank" rel="noreferrer">Themoviedb.org</a></h3>
+        <h3>Gabriel Cecon Carlsen 2021</h3>
       </footer>
+
+      {movieList.length <= 0 &&
+      <div className="loading">
+        <img src="https://media.filmelier.com/noticias/br/2020/03/Netflix_LoadTime.gif" alt="Carregando"></img>
+      </div>
+      }
     </div>
   );
 }

@@ -3,12 +3,15 @@ import "./style.css";
 
 function FeaturedMovie({ item }) {
 
-  console.log(item)
-
   let firstDate = new Date(item.first_air_date);
   let genres = [];
   for(let i in item.genres){
       genres.push(item.genres[i].name)
+  }
+
+  let description = item.overview;  //Limitando o overview
+  if(description.length > 200){
+    description = description.substring(0, 200)+'...';
   }
 
   return (
@@ -32,7 +35,7 @@ function FeaturedMovie({ item }) {
             </div>
           </div>
 
-          <div className="featured--description">{item.overview}</div>
+          <div className="featured--description">{description}</div>
           <div className="featured--buttons">
             <a className="featured--button1" href={`/watch/${item.id}`}> ► Assistir</a>
             <a className="featured--button2" href={`/list/add/${item.id}`}>+ Minha Lista</a>
